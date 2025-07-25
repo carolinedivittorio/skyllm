@@ -15,8 +15,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const redis = new Redis(process.env.REDIS_URL || "redis://localhost:6379");
-
+const redisUrl: string = process.env.REDIS_URL || "redis://localhost:6379";
+const redis = new Redis(redisUrl + "?family=0");
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/status", (req, res) => {
